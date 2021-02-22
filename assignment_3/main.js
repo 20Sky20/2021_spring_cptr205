@@ -29,6 +29,12 @@ game.canvas.addEventListener('mousemove', mousemove => {
     data.Message = JSON.stringify(our_message);
     ws.send(JSON.stringify(data));
 });
+
+game.canvas.addEventListener('click', click => {
+    game.fillStyle = 'black';
+    game.fillRect(click.clientX, click.clientY, 10, 10);
+});
+
 ws.addEventListener('close', close => {
     console.log('WEBSOCKET CONNECTION CLOSED');
 });
