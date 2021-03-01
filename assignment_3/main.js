@@ -13,10 +13,58 @@ const game = document.querySelector('canvas').getContext('2d');
     resize_canvas();
     window.addEventListener('resize', resize_canvas);
 
+
+
 const ws =  new WebSocket('wss://southwestern.media/game_dev');
 ws.addEventListener('open', open => {
     console.log('WEBSOCKET CONNECTION OPEN');
 });
+game.fillStyle = 'darkgrey';
+game.fillRect(0, 0, 1500, 1500);
+game.fillStyle = 'brown';
+game.fillRect(0, 275, 1500, 200);
+game.fillStyle = 'blue';
+game.fillRect(50, 25, 200, 200);
+game.fillStyle = 'red';
+game.fillRect(125, 100, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(300, 25, 200, 200);
+game.fillStyle = 'yellow';
+game.fillRect(375, 100, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(550, 25, 200, 200);
+game.fillStyle = 'green';
+game.fillRect(625, 100, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(800, 25, 200, 200);
+game.fillStyle = 'purple';
+game.fillRect(875, 100, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(1050, 25, 200, 200);
+game.fillStyle = 'orange';
+game.fillRect(1125, 100, 50, 50);
+
+game.fillStyle = 'blue';
+game.fillRect(50, 525, 200, 200);
+game.fillStyle = 'pink';
+game.fillRect(125, 600, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(300, 525, 200, 200);
+game.fillStyle = 'lightgreen';
+game.fillRect(375, 600, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(550, 525, 200, 200);
+game.fillStyle = 'cyan';
+game.fillRect(625, 600, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(800, 525, 200, 200);
+game.fillStyle = 'grey';
+game.fillRect(875, 600, 50, 50);
+game.fillStyle = 'blue';
+game.fillRect(1050, 525, 200, 200);
+game.fillStyle = 'black';
+game.fillRect(1125, 600, 50, 50);
+
 
 game.canvas.addEventListener('mousemove', mousemove => {
     console.log('MOUSEMOVE: X: ', mousemove.clientX, ', ', mousemove.clientY);
@@ -31,9 +79,11 @@ game.canvas.addEventListener('mousemove', mousemove => {
 });
 
 game.canvas.addEventListener('click', click => {
-    game.fillStyle = 'black';
-    game.fillRect(click.clientX, click.clientY, 10, 10);
+    game.fillStyle = 'green';
+    game.fillRect(click.clientX, click.clientY, 15, 15);
 });
+
+
 
 ws.addEventListener('close', close => {
     console.log('WEBSOCKET CONNECTION CLOSED');
