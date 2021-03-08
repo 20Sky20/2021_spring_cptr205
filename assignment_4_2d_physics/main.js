@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', DOMContentLoaded => {
     
-    // CANVAS INIT
+    // CANVAS INIT, we have to resize the window to fit the screen based on the different screen sizes.
     const render = document.querySelector('canvas').getContext('2d');
     const resize = () => {
         render.canvas.width = render.canvas.clientWidth * window.devicePixelRatio;
@@ -9,11 +9,14 @@ window.addEventListener('DOMContentLoaded', DOMContentLoaded => {
     resize();
     window.addEventListener('resize', resize);
 
-    // APPLY PHYSICS
+    // APPLY PHYSICS shows how the x and y directions are being used with motion like acceleration and velocity
+    // all being a the main reason for how the ball moves
     let player_x = -1, player_y = 0;
     let player_r = 0.2;
     let player_vx = 0, player_vy = 0;
     let player_ax = 0, player_ay = 0;
+    // shows the key press and what direction the ball should move in since its either an increase in acceleration
+    // or a decrease in some direction.
     document.addEventListener('keydown', keydown =>{
         if(keydown.key === 'ArrowRight'){
             player_ax += 0.01;
@@ -26,7 +29,7 @@ window.addEventListener('DOMContentLoaded', DOMContentLoaded => {
         }
     });
 
-    // ANIMATION LOOP
+    // ANIMATION LOOP, most of this top stuff is background
     const animation = timestamp => {
         render.clearRect(0, 0, render.canvas.width, render.canvas.height);
 
@@ -39,13 +42,19 @@ window.addEventListener('DOMContentLoaded', DOMContentLoaded => {
         render.fillStyle = '#f00';
         render.beginPath();
         const w = render.canvas.width, h = render.canvas.height;
-
+        //we see the increase in certain variables as others decrease which gives us our view that the ball
+        //has a sort of friction beneath it. With the velocity being higher than the acceleration this helps
+        //to allow the ball to not continue to accelerate like it did before as well as us setting it to 0.
         player_vx += player_ax;
         player_x += player_vx;
         player_ax = 0;
         player_vx *= 0.98;
         player_vy += player_ay;
         player_y += player_vy;
+        //Similar to moving left and right the up key would have the ball rise forever while this adds a force
+        // of gravity which pulls it back down. Without the else part the ball would continue to fall since it
+        //has no base or stopping point. This is where the else comes in as the ball hits 0 in all these points
+        // at the base which stops the ball from continuing further down.
         if(0 < player_y){
         player_ay -= 0.00098;
         }   else{
